@@ -1,2 +1,5 @@
 pandas
 Pyarrow
+matplotlib
+airportsdata
+pgmpy
