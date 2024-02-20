@@ -3,3 +3,4 @@ Pyarrow
 matplotlib
 airportsdata
 pgmpy
+IProgress
