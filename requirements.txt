@@ -4,3 +4,4 @@ matplotlib
 airportsdata
 pgmpy
 IProgress
+imblearn
