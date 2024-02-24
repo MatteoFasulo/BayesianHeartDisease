@@ -3,9 +3,9 @@
 ### Authors
 
 - [Matteo Fasulo](https://github.com/MatteoFasulo)
-- Luca Tedeschini
-- Antonello Gravina
-- Luca Babboni
+- [Luca Tedeschini](https://github.com/LucaTedeschini)
+- [Antonello Gravina](https://github.com/GravAnt)
+- [Luca Babboni](https://github.com/ElektroDuck)
 
 ### Abstract
 
