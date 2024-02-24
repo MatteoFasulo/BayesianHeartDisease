@@ -1,5 +1,6 @@
 pandas
 Pyarrow
 matplotlib
-airportsdata
+networkx
 pgmpy
+IProgress
