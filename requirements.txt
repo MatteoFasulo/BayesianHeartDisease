@@ -3,4 +3,5 @@ Pyarrow
 matplotlib
 networkx
 pgmpy
+pydot
 IProgress
