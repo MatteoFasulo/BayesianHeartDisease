@@ -6,3 +6,4 @@ pgmpy
 pygraphviz
 IProgress
 ipywidgets
+streamlit

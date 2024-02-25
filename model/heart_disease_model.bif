@@ -19,13 +19,13 @@ variable HeartDisease {
     type discrete [ 2 ] { False, True };
 }
 variable MaxHR {
-    type discrete [ 3 ] { (68.867, 113.333], (113.333, 157.667], (157.667, 202.0] };
+    type discrete [ 3 ] { high, low, medium };
 }
 variable Oldpeak {
     type discrete [ 3 ] { high, low, medium };
 }
 variable RestingBP {
-    type discrete [ 3 ] { high, normal, very high };
+    type discrete [ 3 ] { high, normal, very-high };
 }
 variable RestingECG {
     type discrete [ 3 ] { LVH, Normal, ST };
@@ -63,10 +63,10 @@ probability ( ExerciseAngina | ChestPainType, HeartDisease ) {
 probability ( FastingBS | Age, RestingBP ) {
     ( old, high ) 0.7648125755743651, 0.23518742442563478;
     ( old, normal ) 0.8686006825938567, 0.13139931740614336;
-    ( old, very high ) 0.6650294695481336, 0.3349705304518664;
+    ( old, very-high ) 0.6650294695481336, 0.3349705304518664;
     ( young, high ) 0.86310223266745, 0.13689776733254994;
     ( young, normal ) 0.9520547945205479, 0.04794520547945205;
-    ( young, very high ) 0.9365325077399381, 0.06346749226006192;
+    ( young, very-high ) 0.9365325077399381, 0.06346749226006192;
 
 }
 probability ( HeartDisease | Age, Cholesterol, Sex ) {
@@ -85,10 +85,10 @@ probability ( HeartDisease | Age, Cholesterol, Sex ) {
 
 }
 probability ( MaxHR | Age, ExerciseAngina ) {
-    ( old, False ) 0.15491259795057263, 0.574442435201929, 0.2706449668474985;
-    ( old, True ) 0.27329580988117574, 0.6560350218886805, 0.07066916823014384;
-    ( young, False ) 0.035777541622387526, 0.5118668083599008, 0.45235565001771166;
-    ( young, True ) 0.22723253757736517, 0.6622458001768347, 0.11052166224580016;
+    ( old, False ) 0.2706449668474985, 0.15491259795057263, 0.574442435201929;
+    ( old, True ) 0.07066916823014384, 0.27329580988117574, 0.6560350218886805;
+    ( young, False ) 0.45235565001771166, 0.035777541622387526, 0.5118668083599008;
+    ( young, True ) 0.11052166224580016, 0.22723253757736517, 0.6622458001768347;
 
 }
 probability ( Oldpeak | HeartDisease, ST_Slope ) {
