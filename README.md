@@ -19,6 +19,22 @@ In recent years, Bayesian networks (BNs) have gained traction in healthcare, tha
 
 Our work took inspiration from a paper by [Ordovas et al. (2023)](https://doi.org/10.1016/j.cmpb.2023.107405) in which the authors developed a BN to predict CVD risk. We aimed to replicate their work, using a different dataset, and to further explore the potential of BNs in CVD risk assessment. Their work helped us understand the potential of BNs in CVD risk assessment and inspired us to explore the topic further including more in depth analysis
 
+### Dashboard
+
+The dashboard is a web application that allows the user to interact with the Bayesian Network. The user can input the values of the variables and the dashboard will calculate the probability of having a heart disease. The dashboard is built using the Streamlit library.
+
+Install the required packages by running the following command in the terminal:
+
+```bash
+pip install -U -r requirements.txt
+```
+
+Then after installing the required packages, you can run the dashboard by running the following command in the terminal:
+
+```bash
+streamlit run app.py
+```
+
 ### Source
 
 Every dataset used can be found under the Index of heart disease datasets from UCI Machine Learning Repository on the following link: <https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/>
