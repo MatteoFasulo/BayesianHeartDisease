@@ -1,5 +1,7 @@
 # Heart Disease Risk Assessment using Bayesian Networks
 
+This repository contains the code and the report for the project of the course "Fundamentals of Artificial Intelligence and Knowledge Representation (Mod. 3)" at the Alma Mater Studiorum Università di Bologna.
+
 ### Authors
 
 - [Matteo Fasulo](https://github.com/MatteoFasulo)

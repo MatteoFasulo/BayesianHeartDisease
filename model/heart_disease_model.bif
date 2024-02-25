@@ -1,0 +1,124 @@
+network unknown {
+}
+variable Age {
+    type discrete [ 2 ] { old, young };
+}
+variable ChestPainType {
+    type discrete [ 4 ] { ASY, ATA, NAP, TA };
+}
+variable Cholesterol {
+    type discrete [ 3 ] { borderline, high, optimal };
+}
+variable ExerciseAngina {
+    type discrete [ 2 ] { False, True };
+}
+variable FastingBS {
+    type discrete [ 2 ] { False, True };
+}
+variable HeartDisease {
+    type discrete [ 2 ] { False, True };
+}
+variable MaxHR {
+    type discrete [ 3 ] { (68.867, 113.333], (113.333, 157.667], (157.667, 202.0] };
+}
+variable Oldpeak {
+    type discrete [ 3 ] { high, low, medium };
+}
+variable RestingBP {
+    type discrete [ 3 ] { high, normal, very high };
+}
+variable RestingECG {
+    type discrete [ 3 ] { LVH, Normal, ST };
+}
+variable ST_Slope {
+    type discrete [ 3 ] { Down, Flat, Up };
+}
+variable Sex {
+    type discrete [ 2 ] { F, M };
+}
+probability ( Age ) {
+    table 0.45174708818635606, 0.5482529118136439 ;
+}
+probability ( ChestPainType | HeartDisease ) {
+    ( False ) 0.25699844479004663, 0.3689735614307932, 0.3067651632970451, 0.06726283048211508;
+    ( True ) 0.7714669051878354, 0.06305903398926654, 0.1310375670840787, 0.03443649373881932;
+
+}
+probability ( Cholesterol | Sex ) {
+    ( F ) 0.28272827282728275, 0.5467546754675467, 0.1705170517051705;
+    ( M ) 0.3555802743789396, 0.4445680385613645, 0.19985168705969594;
+
+}
+probability ( ExerciseAngina | ChestPainType, HeartDisease ) {
+    ( ASY, False ) 0.754160363086233, 0.245839636913767;
+    ( ASY, True ) 0.2426086956521739, 0.7573913043478261;
+    ( ATA, False ) 0.9636459430979979, 0.03635405690200211;
+    ( ATA, True ) 0.5851063829787234, 0.4148936170212766;
+    ( NAP, False ) 0.8751584283903675, 0.12484157160963244;
+    ( NAP, True ) 0.5819112627986348, 0.4180887372013652;
+    ( TA, False ) 0.846820809248555, 0.1531791907514451;
+    ( TA, True ) 0.8636363636363636, 0.13636363636363635;
+
+}
+probability ( FastingBS | Age, RestingBP ) {
+    ( old, high ) 0.7648125755743651, 0.23518742442563478;
+    ( old, normal ) 0.8686006825938567, 0.13139931740614336;
+    ( old, very high ) 0.6650294695481336, 0.3349705304518664;
+    ( young, high ) 0.86310223266745, 0.13689776733254994;
+    ( young, normal ) 0.9520547945205479, 0.04794520547945205;
+    ( young, very high ) 0.9365325077399381, 0.06346749226006192;
+
+}
+probability ( HeartDisease | Age, Cholesterol, Sex ) {
+    ( old, borderline, F ) 0.596, 0.40399999999999997;
+    ( old, borderline, M ) 0.36077348066298337, 0.6392265193370166;
+    ( old, high, F ) 0.5603621730382293, 0.4396378269617706;
+    ( old, high, M ) 0.2510803802938634, 0.7489196197061366;
+    ( old, optimal, F ) 0.8564356435643564, 0.14356435643564355;
+    ( old, optimal, M ) 0.33509513742071884, 0.6649048625792812;
+    ( young, borderline, F ) 0.9318766066838047, 0.06812339331619538;
+    ( young, borderline, M ) 0.642152023692004, 0.35784797630799603;
+    ( young, high, F ) 0.8018108651911469, 0.1981891348088531;
+    ( young, high, M ) 0.5338436744560838, 0.4661563255439162;
+    ( young, optimal, F ) 0.930622009569378, 0.06937799043062201;
+    ( young, optimal, M ) 0.6190082644628099, 0.38099173553719007;
+
+}
+probability ( MaxHR | Age, ExerciseAngina ) {
+    ( old, False ) 0.15491259795057263, 0.574442435201929, 0.2706449668474985;
+    ( old, True ) 0.27329580988117574, 0.6560350218886805, 0.07066916823014384;
+    ( young, False ) 0.035777541622387526, 0.5118668083599008, 0.45235565001771166;
+    ( young, True ) 0.22723253757736517, 0.6622458001768347, 0.11052166224580016;
+
+}
+probability ( Oldpeak | HeartDisease, ST_Slope ) {
+    ( False, Down ) 0.14465408805031446, 0.4842767295597485, 0.37106918238993714;
+    ( False, Flat ) 0.004156275976724855, 0.946799667497922, 0.049044056525353284;
+    ( False, Up ) 0.0011299435028248588, 0.9936723163841809, 0.00519774011299435;
+    ( True, Down ) 0.09557109557109555, 0.2214452214452214, 0.682983682983683;
+    ( True, Flat ) 0.005839045443005839, 0.8146737750698148, 0.17948717948717952;
+    ( True, Up ) 0.007541478129713424, 0.9306184012066364, 0.06184012066365007;
+
+}
+probability ( RestingBP | Age ) {
+    ( old ) 0.5076734192756293, 0.17986494782074894, 0.31246163290362183;
+    ( young ) 0.43045017703591304, 0.4061709661102681, 0.16337885685381892;
+
+}
+probability ( RestingECG | Age, ExerciseAngina ) {
+    ( old, False ) 0.40807715491259794, 0.4731766124171188, 0.11874623267028331;
+    ( old, True ) 0.23577235772357724, 0.4609130706691682, 0.3033145716072545;
+    ( young, False ) 0.12929507616011338, 0.7414098476797734, 0.12929507616011338;
+    ( young, True ) 0.22723253757736517, 0.6622458001768347, 0.11052166224580016;
+
+}
+probability ( ST_Slope | ExerciseAngina, HeartDisease ) {
+    ( False, False ) 0.02637037037037037, 0.16503703703703704, 0.8085925925925925;
+    ( False, True ) 0.04787714543812104, 0.7091237579042456, 0.24299909665763322;
+    ( True, False ) 0.035196687370600416, 0.5072463768115942, 0.45755693581780543;
+    ( True, True ) 0.10369381397418782, 0.8193146417445484, 0.07699154428126391;
+
+}
+probability ( Sex ) {
+    table 0.25207986688851913, 0.7479201331114809 ;
+}

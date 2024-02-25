@@ -3,5 +3,6 @@ Pyarrow
 matplotlib
 networkx
 pgmpy
-pydot
+pygraphviz
 IProgress
+ipywidgets
