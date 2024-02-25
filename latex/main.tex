@@ -79,9 +79,7 @@ Example: the purpose of this project is to implement part of the Bayesian networ
 \item One final example: we studied \textit{value of information}: something mentioned in class but not covered in this module, which sparked our interest.
 \end{itemize}
 }\\
-The purpose of our project is to develop a Bayesian Network (BN) classifier that predicts the presence or absence of heart disease. Our primary goal is to maximize the F-beta score, which is a measure of a test's accuracy. It considers both precision (the number of true positive results divided by the number of all positive results) and recall (the number of true positive results divided by the number of results that should have been identified as positive). The beta parameter in the F-beta score determines the weight of recall in the combined score. \\
-In addition to this, we are also interested in the process of discretizing continuous variables such as cholesterol levels and maximum heart rate. We will be dividing these variables into bins based on standard values referenced in the literature. This method can help handle continuous variables more effectively in our BN model.\\
-Through this project, we aim to observe the performance of the BN model in predicting heart disease, experiment with different methods of discretization and parameter tuning, and gain experience in working with real-world healthcare data and Bayesian networks. Ultimately, we hope to create a model that can accurately predict the risk of heart disease, contributing to early detection and prevention efforts.
+This project aims to build a Bayesian Network classifier for predicting heart disease. It prioritizes maximizing the F-beta score, balancing both precision and recall in identifying true positive cases. Additionally, the project explores methods to transform continuous variables like cholesterol and heart rate into discrete categories using established medical references, allowing the BN model to handle them more effectively. Ultimately, the project seeks to evaluate the model's performance, experiment with discretization and parameter tuning, gain experience with real-world healthcare data, and ultimately develop a model for accurate heart disease risk prediction, potentially contributing to early detection and prevention efforts.
 
 \subsection{Method}
 \explanation{
@@ -92,9 +90,7 @@ Example: we used pgmpy library methods\footnote{This is just an example: indeed,
 \end{itemize}
 }
 
-In our project, we followed a systematic methodology to construct a Bayesian Network (BN) for predicting heart disease. We used the `pgmpy` library, a Python library for probabilistic graphical models, to construct our BN. Our data was split into a training set and a testing set in an 80-20 ratio. This allowed us to train our model on a majority of the data and then test its performance on unseen data. \\
-To understand if differences in the model would produce better F-beta scores, we varied the structure of our BN using a structure learning approach. This approach was augmented with domain knowledge that we found in the literature, which helped guide the structure learning process. \\
-In addition to varying the structure, we also varied the scoring method used by the structure learning algorithm. This was done to find the optimal (unparametrized) network structure. By varying both the structure and the scoring method, we aimed to explore different configurations of our model and identify the one that maximizes the F-beta score.
+Our project tackled building a Bayesian Network (BN) to predict heart disease, focusing on optimizing its structure and scoring method for best F-beta score. We leveraged the `pgmpy` library and split data into training (80\%) and testing (20\%) sets. To explore different model configurations, we used a structure learning approach guided by domain knowledge from literature, alongside varying the scoring method within the algorithm. Ultimately, this aimed to identify the BN structure and scoring method combination that maximizes the F-beta score for accurate heart disease prediction.
 
 \subsection{Results}
 
@@ -102,9 +98,8 @@ In addition to varying the structure, we also varied the scoring method used by 
 In a few lines: what are the most noteworthy results you have observed or things you have learned/understood from this project? (only the highlights: there will be a dedicated paragraph for presenting results in the Analysis section)
 }
 
-From this project, we observed that the F-beta score, a crucial metric for our model's performance, is highly influenced by the structure of the Bayesian Network (BN). \\
-We found that the unconstrained model, while yielding a slightly higher F-beta score, included meaningless edges. This is likely due to the optimization of a scoring function of the structure given the data, without any knowledge of the meaning of the features. \\
-On the other hand, the constrained model, which was driven by domain knowledge, was still able to explain most of the data correlations while also accounting for more meaningful edges.
+Our exploration revealed a key insight: the structure of our Bayesian Network (BN) significantly impacts its F-beta score. While the unconstrained model achieved a marginally higher score, its meaningless edges suggest overfitting based solely on data-driven optimization. Conversely, the domain-knowledge-driven constrained model, despite a slightly lower score, maintained strong explanatory power and incorporated sensible relationships between features. This highlights the importance of balancing data-driven optimization with domain knowledge to achieve a meaningful and effective BN for heart disease prediction.
+
 \section{Model}
 
 \explanation{
