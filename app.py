@@ -167,7 +167,7 @@ with RIGHT:
                 "The following exams are recommended to find out if the patient has heart disease or not:")
             for i in range(0, min(dummy_df.shape[0], 3)):
                 st.markdown(
-                    f"{i+1}. **{dummy_df.iloc[i, 0]}** if assessed to **{dummy_df.iloc[i, 1]}** then heart disease probability will be **{dummy_df.iloc[i, 2]:.3f} %**")
+                    f"{i+1}. **{dummy_df.iloc[i, 0]}** if assessed to **{dummy_df.iloc[i, 1]}** then heart disease probability will be **{dummy_df.iloc[i, 2] * 100:.2f} %**")
 
 st.divider()
 with st.expander('Credits & Authors'):
