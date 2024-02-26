@@ -35,6 +35,8 @@ Then after installing the required packages, you can run the dashboard by runnin
 streamlit run app.py
 ```
 
+> The Web App is public available at https://heart-disease-risk.streamlit.app
+
 ### Source
 
 Every dataset used can be found under the Index of heart disease datasets from UCI Machine Learning Repository on the following link: <https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/>
