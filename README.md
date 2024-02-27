@@ -6,7 +6,7 @@ This repository contains the code and the report for the project of the course "
 
 - [Matteo Fasulo](https://github.com/MatteoFasulo)
 - [Luca Tedeschini](https://github.com/LucaTedeschini)
-- [Antonello Gravina](https://github.com/GravAnt)
+- [Antonio Gravina](https://github.com/GravAnt)
 - [Luca Babboni](https://github.com/ElektroDuck)
 
 ### Abstract
