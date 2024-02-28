@@ -13,8 +13,8 @@ RUN apt-get update && apt-get install -y \
     libgraphviz-dev \
     pkg-config  \
     && rm -rf /var/lib/apt/lists/* \
-    && git clone https://github.com/MatteoFasulo/Whisper-TikTok.git . \
-    && pip3 install --no-cache-dir -r requirements.txt
+    && git clone https://github.com/MatteoFasulo/BayesianClassifier . \
+    && pip3 install -r requirements.txt
 
 EXPOSE 8501
 
