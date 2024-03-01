@@ -7,25 +7,34 @@ import streamlit as st
 
 
 @st.cache_data
-def load_dataset():
-    df = pd.read_csv(f'data{os.sep}heart.csv')
-    df = df[~(df['Cholesterol'] == 0) & ~(df['RestingBP'] == 0)]
-    df['ExerciseAngina'] = df['ExerciseAngina'].apply(
-        lambda x: False if x == 'N' else True)
-    df['HeartDisease'] = df['HeartDisease'].apply(
-        lambda x: False if x == 0 else True)
+def load_dataset(data: pd.DataFrame):
+    """
+    Cleans the given DataFrame by performing various data transformations.
 
-    df['FastingBS'] = df['FastingBS'].apply(
-        lambda x: False if x == 0 else True)
-    df["Age"] = pd.qcut(x=df["Age"], q=2, labels=["young", "old"])
-    df["RestingBP"] = pd.cut(x=df["RestingBP"], bins=[90, 120, 140, 1000], labels=[
-        "normal", "high", "very_high"])
-    df["Cholesterol"] = pd.cut(x=df["Cholesterol"], bins=[
-        0, 200, 240, 1000], labels=["optimal", "borderline", "high"])
-    df["MaxHR"] = pd.cut(x=df["MaxHR"], bins=3, labels=[
-        "low", "medium", "high"])
-    df["Oldpeak"] = pd.cut(x=df["Oldpeak"], bins=3, labels=[
-        "low", "medium", "high"])
+    Args:
+        data (pd.DataFrame): The input DataFrame to be cleaned.
+
+    Returns:
+        pd.DataFrame: The cleaned DataFrame.
+
+    """
+    data = data[~(data['Cholesterol'] == 0) & ~(data['RestingBP'] == 0)]
+    df = data.copy()
+    df["Age"] = pd.cut(x=data["Age"], bins=[20, 30, 40, 50, 60, 70, 80], labels=[
+        "20-30", "30-40", "40-50", "50-60", "60-70", "70-80"])
+
+    df["RestingBP"] = pd.cut(x=data["RestingBP"], bins=[90, 120, 140, np.Inf], labels=[
+        "90-120", "120-140", "140+"])
+
+    df["Cholesterol"] = pd.cut(x=data["Cholesterol"], bins=[
+        0, 200, 240, np.Inf], labels=["<=200", "200-240", "240+"])
+
+    df["MaxHR"] = pd.qcut(x=data["MaxHR"], q=4, labels=[
+                          "low", "medium", "high", "very-high"])  # binning using quartiles
+
+    df["Oldpeak"] = pd.cut(x=data["Oldpeak"], bins=[-np.Inf, 0.5, 1, 2, np.Inf], labels=[
+        "<=0.5", "0-5-1", "1-2", "2+"])
+    df['FastingBS'] = df['FastingBS'].map({0: 'N', 1: 'Y'})
     return df
 
 
@@ -59,7 +68,7 @@ st.caption('This Dashboard is part of the project of the course "Fundamentals of
 
 # with st.expander('About Bayesian Networks')
 
-df = load_dataset()
+df = load_dataset(data=pd.read_csv(f'data{os.sep}heart.csv'))
 model = load_model()
 probs = np.array([])
 
@@ -102,6 +111,9 @@ with LEFT:
     with left:
         st_slope = st.selectbox(
             'ST Slope', df['ST_Slope'].unique(), index=None, help="The slope of the peak exercise ST segment. Up: upsloping, Flat: flat, Down: downsloping")
+    with right:
+        resting_ecg = st.selectbox(
+            'Resting ECG', df['RestingECG'].unique(), index=None, help="The resting electrocardiographic results. Normal: normal, Abnormal: having ST-T wave abnormality, LVH: showing probable or definite left ventricular hypertrophy by Estes' criteria")
 
     if st.button('Predict'):
 
