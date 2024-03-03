@@ -35,8 +35,8 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
-        'Get help': 'https://github.com/MatteoFasulo/BayesianClassifier',
-        'Report a bug': 'https://github.com/MatteoFasulo/BayesianClassifier/issues',
+        'Get help': 'https://github.com/MatteoFasulo/BayesianHeartDisease',
+        'Report a bug': 'https://github.com/MatteoFasulo/BayesianHeartDisease/issues',
         'About': 'This is a simple Web App to predict the risk of heart disease based on a few parameters of the patient. The model is a Bayesian Network and the inference is performed using Variable Elimination.'
     }
 )
@@ -154,12 +154,15 @@ with RIGHT:
         st.write(f'Probability of heart disease: {probs[1]} %')
 
         st.divider()
-        if dummy_df.shape[0] > 0:
+        if dummy_df.shape[0] > 0 and probs[1] < 100:
             st.markdown(
                 "The following exams are recommended to find out if the patient has heart disease or not:")
             for i in range(0, min(dummy_df.shape[0], 3)):
                 st.markdown(
                     f"{i+1}. **{dummy_df.iloc[i, 0]}** if assessed to **{dummy_df.iloc[i, 1]}** then heart disease probability will be **{dummy_df.iloc[i, 2] * 100:.2f} %**")
+
+        elif probs[1] == 100:
+            st.markdown("**Probability of heart disease is 100 %**")
 
 st.divider()
 with st.expander('Credits & Authors'):

@@ -7,3 +7,4 @@ pygraphviz
 IProgress
 ipywidgets
 streamlit
+PyImpetus

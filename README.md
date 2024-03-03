@@ -35,7 +35,7 @@ Then after installing the required packages, you can run the dashboard by runnin
 streamlit run app.py
 ```
 
-> The Web App is public available at https://heart-disease-risk.streamlit.app
+> The Web App is public available at <https://heart-disease-risk.streamlit.app>
 
 ### Source
 
