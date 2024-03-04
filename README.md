@@ -64,4 +64,4 @@ Mahmood, S. S., Levy, D., Vasan, R. S., & Wang, T. J. (2014). The Framingham Hea
 WHO CVD Risk Chart Working Group (2019). World Health Organization cardiovascular disease risk charts: revised models to estimate risk in 21 global regions. The Lancet. Global health, 7(10), e1332–e1345. <https://doi.org/10.1016/S2214-109X(19)30318-3>
 
 <a id="4">[4]</a>
-Jensen, Finn & Nielsen, Thomas. (2007). Bayesian Network and Decision Graphs. 10.1007/978-0-387-68282-2.
+Jensen, Finn & Nielsen, Thomas. (2007). Bayesian Network and Decision Graphs. <https://doi.org/10.1007/978-0-387-68282-2>.
