@@ -8,3 +8,5 @@ IProgress
 ipywidgets
 streamlit
 PyImpetus
+plot-metric
+scipy==1.11.4
