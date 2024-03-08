@@ -10,7 +10,7 @@
 \frenchspacing
 \setlength{\pdfpagewidth}{8.5in}
 \setlength{\pdfpageheight}{11in}
-
+\usepackage{float}
 
 
 % THE \pdfinfo /Title AND /Author ARE NOT NECESSARY, THEY ARE METADATA FOR THE FINAL PDF FILE
@@ -25,7 +25,7 @@
 \title{Heart Disease Risk Assessment using Bayesian Networks}
 \author{Matteo Fasulo, Luca Tedeschini, Antonio Gravina, Luca Babboni\\
 Master's Degree in Artificial Intelligence, University of Bologna\\
-\{ matteo.fasulo, luca.tedeschini3, luca.babboni2, antonio.gravina \}@studio.unibo.it
+\{ matteo.fasulo, luca.tedeschini3, antonio.gravina, luca.babboni2 \}@studio.unibo.it
 }
 
 \maketitle
@@ -42,12 +42,10 @@ We use ... \\
 We found that ...
 }
 
-Cardiovascular diseases (CVDs), the leading cause of death globally, claimed an estimated 17.9 million lives in 2019, accounting for 32\% of all global deaths. Of these, 85\% were due to heart attack and stroke, with over three quarters occurring in low- and middle-income countries. Furthermore, CVDs were responsible for 38\% of the 17 million premature deaths (under the age of 70) due to noncommunicable diseases in 2019. Most CVDs can be prevented by addressing behavioural risk factors such as tobacco use, unhealthy diet, obesity, physical inactivity, and harmful use of alcohol \cite{WHO2024}. \\
-In this context, our study employs Bayesian networks (BNs) for early detection of CVDs, which is crucial for effective management through counselling and medicines. Inspired by this paper \cite{ORDOVAS2023107405}, we apply their approach to a new dataset combined from different data sources. Our aim is to validate the effectiveness of BNs in predicting CVD risk and to analyze the interactions between various risk factors. This work contributes to the early detection and management of CVDs, potentially reducing its health and economic impact.
-
+Cardiovascular diseases (CVDs) remain the foremost global cause of mortality, claiming approximately 17.9 million lives in 2019. These diseases, which include heart attacks and strokes, accounted for 85\% of CVD-related fatalities. 
+In this study, Bayesian Networks (BNs) are employed for the early detection of CVDs, with a focus on validating the predictive efficacy of various BNs and exploring the intricate interactions among diverse risk factors. Our research emphasize the importance of balancing data-driven optimization with domain knowledge for meaningful and effective CVD prediction. The study found that the BN built upon domain knowledge demonstrates remarkable predictive performance, achieving a notable ROC AUC score of 0.85, highlighting its potential for meaningful and effective CVD prediction.
 \end{quote}
 \end{abstract}
-
 
 \section{Introduction}
 \subsection{Domain}
@@ -57,11 +55,10 @@ Introduce your work: what you are modeling, if you are drawing inspiration from 
 Briefly provide whatever background information on the domain you think is necessary for the reader to understand the model and your design choices.
 }
 
-In our study, we are modeling the risk of cardiovascular diseases (CVDs), a leading cause of death globally \cite{WHO2024}. Our model aims to predict the likelihood of CVDs based on a range of risk factors, such as age, sex, chest pain type, resting blood pressure, cholesterol levels, and more. \\
-Our work draws inspiration from a paper \cite{ORDOVAS2023107405}, where the authors developed a Bayesian network (BN) to predict CVD risk. Bayesian networks are a powerful tool for handling complex data and analyzing the interactions between various risk factors. We aim to replicate their approach using a different dataset, thereby validating the effectiveness of BNs in predicting CVD risk.\\
-The domain of our study is healthcare, specifically cardiovascular health. 
-Since the 1930s, research has identified diverse CVD risk factors \cite{MAHMOOD2014999}. Notably, CVDs encompass a range of conditions, including heart disease and stroke, and are often associated with modifiable risk factors such as hypertension, diabetes, and hyperlipidaemia. Early detection and management of these risk factors are crucial in reducing the incidence and impact of CVDs. \\
-Our choice of using a Bayesian network as our model is motivated by its ability to handle complex, real-world data and its success in healthcare applications \cite{nielsen2009bayesian}. Furthermore, BNs allow us to analyze how various risk factors interact, providing valuable insights into the mechanisms of CVDs.
+In our study, we are modeling the risk of cardiovascular diseases (CVDs), a leading cause of death globally \cite{WHO2024}.
+Our work draws inspiration from a paper \cite{ORDOVAS2023107405} where the authors developed a Bayesian Network (BN) to predict CVD risk by means of CVD risk factors (CVRFs) divided into modifiable and non-modifiable CVRFs.
+Researchers have identified diverse CVD risk factors \cite{MAHMOOD2014999}, such as: age, sex, chest pain type, resting blood pressure, total serum cholesterol and other meaningful features.\\
+Our choice of using a BN as predictive model is motivated by its ability to handle complex, real-world data and its success in healthcare applications \cite{nielsen2009bayesian}. Furthermore, BNs let us analyze how various risk factors interact, providing valuable insights into the mechanisms of CVDs.
 
 \attention{HERE AND EVERYWHERE ELSE: ALWAYS KEEP IN MIND THAT, CRUCIALLY, WHATEVER TEXT/CODE/FIGURES/IDEAS/... YOU TAKE FROM ELSEWHERE MUST BE CLEARLY IDENTIFIED AND PROPERLY REFERENCED IN THE REPORT.}
 
@@ -78,8 +75,9 @@ Example: the purpose of this project is to implement part of the Bayesian networ
 %
 \item One final example: we studied \textit{value of information}: something mentioned in class but not covered in this module, which sparked our interest.
 \end{itemize}
-}\\
-This project aims to build a Bayesian Network classifier for predicting heart disease. It prioritizes maximizing the F-beta score, balancing both precision and recall in identifying true positive cases. Additionally, the project explores methods to transform continuous variables like cholesterol and heart rate into discrete categories using established medical references, allowing the BN model to handle them more effectively. Ultimately, the project seeks to evaluate the model's performance, experiment with discretization and parameter tuning, gain experience with real-world healthcare data, and ultimately develop a model for accurate heart disease risk prediction, potentially contributing to early detection and prevention efforts.
+}
+
+Our project aims at the creation of several BN classifiers built by using different methods, in order to predict the likelihood of CVDs based on a range of risk factors, such as the ones mentioned before. It prioritizes the maximization of the ROC AUC score, as it is proven to be particularly useful for prediction and evaluation of healthcare outcomes \cite{Marcusson}. Additionally, the project explores methods to transform continuous variables like cholesterol and heart rate into discrete categories by using established medical references, allowing the BN models to handle them more effectively. Ultimately, the project seeks to evaluate the performance of each model to get the best one in terms of results (accuracy and ROC AUC) and semantic meaningfulness.
 
 \subsection{Method}
 \explanation{
@@ -90,7 +88,8 @@ Example: we used pgmpy library methods\footnote{This is just an example: indeed,
 \end{itemize}
 }
 
-Our project tackled building a Bayesian Network (BN) to predict heart disease, focusing on optimizing its structure and scoring method for best F-beta score. We leveraged the `pgmpy` library and split data into training (80\%) and testing (20\%) sets. To explore different model configurations, we used a structure learning approach guided by domain knowledge from literature, alongside varying the scoring method within the algorithm. Ultimately, this aimed to identify the BN structure and scoring method combination that maximizes the F-beta score for accurate heart disease prediction.
+In order to build and test the BN classifiers, we use the `pgmpy` library and we explore different model configurations: Naive Bayes, Hill Climbing (with all its possible scoring methods, both constrained and unconstrained, provided by the library), Domain Knowledge network (using scientific literature to establish the edges) and a reduced network with feature selection. For the latter, we use a library named `PyImpetus` that implements a Markov Blanket based feature selection algorithm.
+Ultimately, this aims at the identification of the BN structure and scoring method combination that maximizes the ROC AUC score for accurate heart disease prediction. This chosen model is then subjected to further analysis, regarding the structure and the properties of the network.
 
 \subsection{Results}
 
@@ -98,7 +97,9 @@ Our project tackled building a Bayesian Network (BN) to predict heart disease, f
 In a few lines: what are the most noteworthy results you have observed or things you have learned/understood from this project? (only the highlights: there will be a dedicated paragraph for presenting results in the Analysis section)
 }
 
-Our exploration revealed a key insight: the structure of our Bayesian Network (BN) significantly impacts its F-beta score. While the unconstrained model achieved a marginally higher score, its meaningless edges suggest overfitting based solely on data-driven optimization. Conversely, the domain-knowledge-driven constrained model, despite a slightly lower score, maintained strong explanatory power and incorporated sensible relationships between features. This highlights the importance of balancing data-driven optimization with domain knowledge to achieve a meaningful and effective BN for heart disease prediction.
+Our exploration reveals that the structure of the BN significantly impacts performances. Although the Naive Bayes and the Hill Climbing unconstrained models yield good results, they lack semantic meaning. Conversely, the Hill Climbing constrained and the Domain Knowledge network models maintain strong explanatory power and incorporate sensible relationships between features. This highlights the importance of balancing data-driven optimization with domain knowledge to achieve a meaningful and effective BN for heart disease prediction.
+
+
 
 \section{Model}
 
@@ -115,8 +116,8 @@ Insert a picture of your Bayesian network(s) (Figure~\ref{fig:network})
 
 \begin{figure}
     \centering
-    \includegraphics[scale=1.0]{F2.png}
-    \caption{Bayesian network. Image taken from \url{https://www.intechopen.com/chapters/62844}}
+    \includegraphics[scale=0.35]{latex/CVD prediction with bn.png}
+    \caption{Domain Knowledge Bayesian Network structure}
     \label{fig:network}
 \end{figure}
 
@@ -130,21 +131,23 @@ Explain the following aspects of your model (if there is too much to say and not
 In general, only write whatever is relevant and necessary to understand the rest of the report. Do not explain concepts seen in class or explained in textbooks. Do not describe models taken from textbook/literature/tutorials/libraries, like (for example) the Asia network. Instead, if you are using a model as-is: just insert a reference or URL\footnote{\url{https://www.bnlearn.com/bnrepository/}.}
 }
 
-The model in question is a Bayesian Network (BN) where each node represents a random variable with a specific meaning and range, such as "Age", "Sex", "ChestPainType", and others related to heart disease. The continuous variables in the dataset were discretized using standard values from literature. The Conditional Probability Tables (CPTs) for these nodes were learned from the data.\\
-A hybrid approach was used to build the BN. Initially, a local search algorithm, specifically hill climbing, was used to find the structure that best explains the correlations in the data. After obtaining a solution, some edges that didn't make sense in the context of heart disease prediction were blacklisted, constraining the network structure. The hill climbing algorithm was run again with these constraints, resulting in a structure that was both statistically sound and contextually sensible.\\
-Finally, modifications were made to the edges based on literature references to ensure the causal meaning of the edges in the BN. This process sped up the computation by first finding a good initial structure and then refining it based on domain knowledge and constraints.\\
-The aim of this project is to observe the effectiveness of BNs in predicting heart disease, gain insights into the interactions between various risk factors, and experiment with the effect of different network structures and constraints on prediction accuracy.
+In the BNs built for this study, each node embodies a unique random variable, each with a distinct interpretation and range. These variables include 'Age', 'Sex', 'ChestPainType', among others, all of which are pertinent to the study of CVDs. The continuous variables within the dataset have been discretized, utilizing standard ranges derived from existing scientific literature. For models that do not grasp the semantic meaning of the variables, and consequently establish links without discerning causal relationships, the Maximum Likelihood Estimator is employed to estimate the Conditional Probability Distributions (CPDs). Conversely, for the Domain Knowledge BN, the Bayesian Estimator is used.\\
+For the construction of the Domain Knowledge network, we identify the causal relationships among the variables, substantiated by both scientific literature and domain knowledge. Among all the models, this particular one has been selected for the analysis of its structure and properties.
+We can also consider the network with reduced dimensionality. However, it is overly simplistic and it does not take into account the majority of the features.
 
 \section{Analysis}
-
 \subsection{Experimental setup}
 \explanation{
 Briefly describe the probability queries or other experiments that you have carried out. Describe how you plan to evaluate the results (for example: are there results that you would expect?)
 }
-To evaluate the results, we used the F-beta score with beta set to 2, which makes recall twice as important as precision. This is particularly relevant in medical diagnosis where it is crucial to minimize the rate of false negatives \cite{9418099}. In other words, it is more important to correctly identify all actual positive cases (high recall) even at the expense of including some false positives (lower precision). This is because a false negative, or failing to identify a true case of heart disease, could have serious, potentially life-threatening repercussions. Therefore, a model with a higher recall is more desirable in this context.\\
-This approach aligns with the general consensus in the field that in high-risk disease detection cases like heart disease, recall is a more important evaluation metric than precision. We expect that a model with a higher recall will be more effective in predicting heart disease, thereby contributing to early detection and prevention efforts while still maintaining a good precision score.
+
+To assess the results, we employ the ROC AUC score. In order to do this, we partition the data into training ($85\%$) and testing ($15\%$) sets. Additionally, we apply KFold Cross Validation to obtain a more realistic estimate of the classifier’s performance on unseen data. The expectations are higher for the networks where we manually incorporate edges and constraints.
 
 \subsection{Results}
+
+
+
+
 \explanation{
 What did you observe? \\
 %
@@ -152,13 +155,27 @@ All according to expectations? \\
 %
 Anything surprising or worthwhile mentioning?
 }
+\begin{table}[H]\centering
+\begin{tabular}{@{\extracolsep{1pt}}lccccc}
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Bayesian Model    & \multicolumn{1}{c}{ROC AUC}\\
+\hline\\[-1.8ex]
+Naïve Bayes                 & 0.84\\ \hline\\[-1.8ex]
+Hill Climbing Unconstrained & 0.86\\ \hline\\[-1.8ex]
+Hill Climbing Constrained   & 0.83 \\ \hline\\[-1.8ex]
+\textbf{Domain Knowledge}   & \textbf{0.85}\\ \hline\\[-1.8ex]
+Reduced Network             & 0.86\\
+\hline \\[-1.8ex] 
+\end{tabular}
+\caption{Results found for different BN construction methods}\\
+\label{tab:model_res}
+\end{table}
 
+In terms of ROC AUC, all the results seem similar. However, the model that relies on domain knowledge performs slightly less effectively than both the unconstrained Hill Climbing model and the reduced network.
 
 \section{Conclusion}
-\explanation{
-Just one paragraph: what you have learned, anything interesting that came up, what are the limitations of your model/experiments/study/...
-}
-
+In this project, we explored various strategies for constructing a BN classifier. Our findings suggest that a fully explainable network is preferable to a high-performing network that lacks semantic meaning or does not exploit all the features. Even though these features may introduce some noise into the network, we believe that their inclusion is more beneficial than excluding them altogether. The final network achieved a ROC AUC score of $0.85$, which is commendable. Any attempt to further improve this score could potentially lead to overfitting on the dataset.
 
 \section{Links to external resources}
 \explanation{
