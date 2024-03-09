@@ -1,5 +1,0 @@
-build-essential
-graphviz
-graphviz-dev
-libgraphviz-dev
-pkg-config

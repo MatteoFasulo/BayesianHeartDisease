@@ -6,7 +6,6 @@ pgmpy
 pygraphviz
 IProgress
 ipywidgets
-streamlit
 PyImpetus
 scipy
 seaborn
