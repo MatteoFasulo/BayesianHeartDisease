@@ -19,18 +19,6 @@ Our work, inspired by [Ordovas et al. (2023)](https://doi.org/10.1016/j.cmpb.202
 
 ## Dashboard
 
-The dashboard is a web application enabling users to interact with the Bayesian Network. Users input variable values, and the dashboard calculates the probability of heart disease. Built using the Streamlit library, the required packages can be installed using:
-
-```bash
-pip install -U -r requirements.txt
-```
-
-Run the dashboard with:
-
-```bash
-streamlit run app.py
-```
-
 > The Web App is publicly available at [heart-disease-risk.streamlit.app](https://heart-disease-risk.streamlit.app)
 
 ## Source
