@@ -21,6 +21,14 @@ Bayesian networks (BNs) have emerged as valuable tools in healthcare for handlin
 
 Our work, inspired by [Ordovas et al. (2023)](https://doi.org/10.1016/j.cmpb.2023.107405), aimed to replicate their BN-based CVD risk prediction using a different dataset. Additionally, we sought to explore the broader potential of BNs in CVD risk assessment, conducting in-depth analyses beyond the original paper.
 
+## How to clone the repository?
+
+Since the repository contains a submodule, the following command should be used to clone the repository:
+
+```bash
+git clone --recursive https://github.com/MatteoFasulo/BayesianHeartDisease.git
+```
+
 ## Dashboard
 
 > The Web App is publicly available at [heart-disease-risk.streamlit.app](https://heart-disease-risk.streamlit.app)
