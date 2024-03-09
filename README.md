@@ -9,6 +9,10 @@ This repository encompasses the code and report for the "Fundamentals of Artific
 - [Antonio Gravina](https://github.com/GravAnt)
 - [Luca Babboni](https://github.com/ElektroDuck)
 
+## Report
+
+The pdf report is available [here](https://matteofasulo.github.io/BayesianHeartDisease/report.pdf).
+
 ## Abstract
 
 Cardiovascular disease (CVD) remains a significant cause of mortality in Europe, imposing both health and economic challenges. Timely and accurate prediction is crucial for effective prevention and intervention strategies. Identifying modifiable and non-modifiable risk factors is essential, as lifestyle changes can significantly impact individual health.
