@@ -1,0 +1,3 @@
+[submodule "HeartDisease-Dashboard"]
+	path = HeartDisease-Dashboard
+	url = https://github.com/MatteoFasulo/HeartDisease-Dashboard
